@@ -1,0 +1,71 @@
+# Password Strength Checker
+# This script evaluates password strength based on multiple criteria
+
+# Initialize variables for password criteria
+has_uppercase = False
+has_lowercase = False
+has_digit = False
+has_special = False
+special_chars = "!@#$%^&*()_+-=[]{}|;:,.<>?"
+
+# Get password input
+print("=== Password Strength Checker ===")
+password = input("Enter a password to check: ")
+password_length = len(password)
+
+# Loop through each character to check criteria
+for char in password:
+    if char.isupper():
+        has_uppercase = True
+    elif char.islower():
+        has_lowercase = True
+    elif char.isdigit():
+        has_digit = True
+    elif char in special_chars:
+        has_special = True
+
+# Calculate strength score using conditionals
+strength_score = 0
+
+if password_length >= 8:
+    strength_score += 1
+if password_length >= 12:
+    strength_score += 1
+if has_uppercase:
+    strength_score += 1
+if has_lowercase:
+    strength_score += 1
+if has_digit:
+    strength_score += 1
+if has_special:
+    strength_score += 1
+
+# Print results
+print("\n" + "="*40)
+print("PASSWORD ANALYSIS")
+print("="*40)
+print(f"Length: {password_length} characters")
+print(f"Contains uppercase: {'✓' if has_uppercase else '✗'}")
+print(f"Contains lowercase: {'✓' if has_lowercase else '✗'}")
+print(f"Contains digits: {'✓' if has_digit else '✗'}")
+print(f"Contains special characters: {'✓' if has_special else '✗'}")
+
+# Use conditionals to determine overall strength
+print("\n" + "="*40)
+if strength_score >= 5:
+    print("Password Strength: STRONG 💪")
+    print("Great password! It meets most security requirements.")
+elif strength_score >= 3:
+    print("Password Strength: MEDIUM ⚠️")
+    print("Your password is okay, but could be improved.")
+else:
+    print("Password Strength: WEAK ❌")
+    print("Your password needs improvement!")
+
+# Print recommendations
+print("\nRecommendations:")
+if password_length < 8:
+    print("  - Use at least 8 characters (12+ recommended)")
+if not has_uppercase:
+    print("  - Add uppercase letters (A-Z)")
+if not has_lowercase
