@@ -1,0 +1,5 @@
+# Simple Budget Tracker
+income = float(input("Enter your monthly income: $"))
+expenses = float(input("Enter your total expenses: $"))
+remaining = income - expenses
+print(f"Remaining budget: ${remaining:.2f}. {'Great job saving!' if remaining > 0 else 'You are overspending!'}")
