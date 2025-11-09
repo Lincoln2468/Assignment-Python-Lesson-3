@@ -1,0 +1,54 @@
+# Personal Budget Tracker
+# This script helps track monthly income and expenses
+
+# Initialize variables
+total_expenses = 0.0
+expenses_list = []
+
+# Get user input for income
+print("=== Personal Budget Tracker ===")
+monthly_income = float(input("Enter your monthly income: $"))
+
+# Get number of expenses to track
+num_expenses = int(input("How many expenses do you want to track? "))
+
+# Loop to collect expense data
+for i in range(num_expenses):
+    print(f"\nExpense #{i + 1}")
+    expense_name = input("  Expense name: ")
+    expense_amount = float(input("  Amount: $"))
+    
+    # Add to tracking variables
+    expenses_list.append((expense_name, expense_amount))
+    total_expenses += expense_amount
+
+# Calculate remaining budget
+remaining_budget = monthly_income - total_expenses
+
+# Print detailed summary
+print("\n" + "="*40)
+print("BUDGET SUMMARY")
+print("="*40)
+print(f"Monthly Income:    ${monthly_income:.2f}")
+print(f"Total Expenses:    ${total_expenses:.2f}")
+print(f"Remaining Budget:  ${remaining_budget:.2f}")
+print("\nExpense Breakdown:")
+for name, amount in expenses_list:
+    print(f"  - {name}: ${amount:.2f}")
+
+# Conditional statements for financial advice
+print("\n" + "="*40)
+if remaining_budget > 0:
+    savings_rate = (remaining_budget / monthly_income) * 100
+    print(f"Great job! You're saving {savings_rate:.1f}% of your income.")
+    if savings_rate >= 20:
+        print("Excellent savings rate! Keep it up!")
+    else:
+        print("Consider increasing your savings to at least 20%.")
+elif remaining_budget == 0:
+    print("You're breaking even. Try to cut expenses to build savings.")
+else:
+    print("Warning: You're overspending by ${:.2f}!".format(abs(remaining_budget)))
+    print("Review your expenses and create a plan to reduce spending.")
+
+print("="*40)
